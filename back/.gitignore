@@ -1,0 +1,4 @@
+.env
+*lock*
+node_modules
+.vscode
