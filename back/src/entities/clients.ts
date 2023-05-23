@@ -45,6 +45,7 @@ export class Client {
 
   @BeforeInsert()
   hashPassword() {
+    console.log(this.password);
     this.password = hashSync(this.password, 10);
   }
 }

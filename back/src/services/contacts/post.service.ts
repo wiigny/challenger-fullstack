@@ -1,18 +1,22 @@
 import { AppDataSource } from "../../data-source";
-import { Client } from "../../entities";
-import { TCreateClient, TReturnClientCreated } from "../../interfaces";
-import { returnClientCreatedSchema } from "../../schemas";
+import { Client, Contact } from "../../entities";
+import { TCreateContactRequired, TReturnContact } from "../../interfaces";
+import { returnContactSchema } from "../../schemas";
 
-export const createClientService = async (
-  request: TCreateClient
-): Promise<TReturnClientCreated> => {
-  const clientRepo = AppDataSource.getRepository(Client);
+export const createContactService = async (
+  request: TCreateContactRequired,
+  clientToken: Client
+): Promise<TReturnContact> => {
+  const contactRepo = AppDataSource.getRepository(Contact);
 
-  const clientCreated = clientRepo.create(request);
+  const contactCreated = contactRepo.create({
+    ...request,
+    client: clientToken,
+  });
 
-  await clientRepo.save(clientCreated);
+  await contactRepo.save(contactCreated);
 
-  const clientPassOmited = returnClientCreatedSchema.parse(clientCreated);
+  const contactPassOmited = returnContactSchema.parse(contactCreated);
 
-  return clientPassOmited;
+  return contactPassOmited;
 };

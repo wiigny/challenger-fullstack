@@ -1,4 +1,3 @@
-import { Response } from "express";
 import { AppDataSource } from "../../data-source";
 import { Client } from "../../entities";
 import { AppError } from "../../errors/errors";
@@ -33,6 +32,7 @@ export const retrieveClientService = async (
   clientFounded: Client
 ): Promise<TReturnClientCreated> => {
   const findClient = clientFounded;
+
   const clientParsed = returnClientCreatedSchema.parse(findClient);
 
   return clientParsed;

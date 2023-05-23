@@ -1,27 +1,24 @@
-import { Response } from "express";
 import { AppDataSource } from "../../data-source";
-import { Client } from "../../entities";
-import { AppError } from "../../errors/errors";
-import { TCreateClient, TReturnClientCreated } from "../../interfaces";
-import { returnClientCreatedSchema } from "../../schemas";
+import { Contact } from "../../entities";
+import { TUpdateContactRequired } from "../../interfaces";
+import { updateContactSchema } from "../../schemas";
 
-export const updateClientService = async (
-  id: string,
-  data: TCreateClient,
-  clientFounded: Client
-): Promise<TReturnClientCreated> => {
-  const clientRepo = AppDataSource.getRepository(Client);
+export const updateContactService = async (
+  data: TUpdateContactRequired,
+  ContactFounded: Contact
+): Promise<any> => {
+  const contactRepo = AppDataSource.getRepository(Contact);
 
-  const findClient = clientFounded;
+  const findContact = ContactFounded;
 
-  const update = clientRepo.create({
-    ...findClient,
+  const update = contactRepo.create({
+    ...findContact,
     ...data,
   });
 
-  await clientRepo.save(update);
+  await contactRepo.save(update);
 
-  const clientUpdated = returnClientCreatedSchema.parse(update);
+  const contactUpdated = updateContactSchema.parse(update);
 
-  return clientUpdated;
+  return contactUpdated;
 };

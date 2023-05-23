@@ -6,6 +6,15 @@ import {
   updateClientRequiredSchema,
   updateClientSchema,
 } from "./clients/clients.schemas";
+import {
+  createContactSchema,
+  returnContactSchema,
+  returnManyContactsSchema,
+  updateContactSchema,
+  updateContactRequiredSchema,
+  createContactRequiredSchema,
+} from "./contacts/contacts.schemas";
+import { loginSchema } from "./login/login.schemas";
 
 export {
   createClientSchema,
@@ -14,4 +23,11 @@ export {
   returnManyClientsSchema,
   updateClientSchema,
   updateClientRequiredSchema,
+  loginSchema,
+  createContactSchema,
+  returnContactSchema,
+  returnManyContactsSchema,
+  updateContactSchema,
+  updateContactRequiredSchema,
+  createContactRequiredSchema,
 };

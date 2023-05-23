@@ -1,12 +1,9 @@
-import { Response } from "express";
 import { AppDataSource } from "../../data-source";
 import { Client } from "../../entities";
-import { AppError } from "../../errors/errors";
 import { TCreateClient, TReturnClientCreated } from "../../interfaces";
 import { returnClientCreatedSchema } from "../../schemas";
 
 export const updateClientService = async (
-  id: string,
   data: TCreateClient,
   clientFounded: Client
 ): Promise<TReturnClientCreated> => {

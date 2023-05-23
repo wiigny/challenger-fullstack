@@ -1,16 +1,14 @@
-import { Response } from "express";
 import { AppDataSource } from "../../data-source";
-import { Client } from "../../entities";
+import { Contact } from "../../entities";
 
-export const deleteClientService = async (
-  id: string,
-  clientFounded: Client
+export const deleteContactService = async (
+  contactFounded: Contact
 ): Promise<void> => {
-  const clientRepo = AppDataSource.getRepository(Client);
+  const contactRepo = AppDataSource.getRepository(Contact);
 
-  const findClient = clientFounded;
+  const findContact = contactFounded;
 
-  await clientRepo.remove(findClient);
+  await contactRepo.remove(findContact);
 
   return;
 };

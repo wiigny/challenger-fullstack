@@ -1,39 +1,30 @@
-import { Response } from "express";
 import { AppDataSource } from "../../data-source";
-import { Client } from "../../entities";
-import { AppError } from "../../errors/errors";
-import { TManyClients, TReturnClientCreated } from "../../interfaces";
-import {
-  returnManyClientsSchema,
-  returnClientCreatedSchema,
-} from "../../schemas";
+import { Contact } from "../../entities";
+import { TManyContacts, TReturnContact } from "../../interfaces";
+import { returnContactSchema, returnManyContactsSchema } from "../../schemas";
 
-const clientRepo = AppDataSource.getRepository(Client);
+const contactRepo = AppDataSource.getRepository(Contact);
 
-export const listClientsService = async (
-  email: string | undefined
-): Promise<TManyClients> => {
-  let findClient: Client | null | Client[] = null;
+export const listContactsService = async (): Promise<TManyContacts> => {
+  let findContact: Contact | null | Contact[] = null;
 
-  if (email) {
-    findClient = await clientRepo.findOneBy({ email: email });
+  findContact = await contactRepo.find({
+    relations: {
+      client: true,
+    },
+  });
 
-    if (!findClient) throw new AppError("Detail: Not Found.", 404);
-  }
+  const listContacts = returnManyContactsSchema.parse(findContact);
 
-  findClient = await clientRepo.find();
-
-  const listClients = returnManyClientsSchema.parse(findClient);
-
-  return listClients;
+  return listContacts;
 };
 
-export const retrieveClientService = async (
+export const retrieveContactService = async (
   id: string,
-  clientFounded: Client
-): Promise<TReturnClientCreated> => {
-  const findClient = clientFounded;
-  const clientParsed = returnClientCreatedSchema.parse(findClient);
+  ContactFounded: Contact
+): Promise<TReturnContact> => {
+  const findContact = ContactFounded;
+  const contactParsed = returnContactSchema.parse(findContact);
 
-  return clientParsed;
+  return contactParsed;
 };

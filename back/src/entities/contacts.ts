@@ -1,7 +1,6 @@
 import {
   Column,
   CreateDateColumn,
-  DeleteDateColumn,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -17,8 +16,8 @@ export class Contact {
   @Column({ type: "varchar" })
   name: string;
 
-  @Column({ type: "varchar" })
-  email: string;
+  @Column({ type: "varchar", nullable: true })
+  email: string | null;
 
   @Column({ type: "varchar" })
   telephone: string;
@@ -29,6 +28,6 @@ export class Contact {
   @UpdateDateColumn({ type: "timestamp" })
   updatedAt: string;
 
-  @ManyToOne(() => Client, (client) => client.contacts, { nullable: true })
-  client: Client | null;
+  @ManyToOne(() => Client, (client) => client.contacts, { nullable: false })
+  client: Client;
 }

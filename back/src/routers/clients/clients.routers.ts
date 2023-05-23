@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import {
   checkClientExistsMiddlewares,
+  checkToken,
   verifyDataMiddle,
 } from "../../middlewares";
 import { createClientSchema, updateClientSchema } from "../../schemas";
@@ -20,20 +21,27 @@ clientsRouter.post(
   verifyDataMiddle(createClientSchema),
   createClientController
 );
+
 clientsRouter.get("", listClientsController);
+
 clientsRouter.get(
   "/:id",
   checkClientExistsMiddlewares,
+  checkToken,
   retrieveClientController
 );
+
 clientsRouter.patch(
   "/:id",
   checkClientExistsMiddlewares,
+  checkToken,
   verifyDataMiddle(updateClientSchema),
   updateClientController
 );
+
 clientsRouter.delete(
   "/:id",
   checkClientExistsMiddlewares,
+  checkToken,
   deleteClientController
 );

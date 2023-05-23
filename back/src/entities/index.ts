@@ -1,3 +1,4 @@
 import { Client } from "./clients";
+import { Contact } from "./contacts";
 
-export { Client };
+export { Client, Contact };

@@ -5,6 +5,14 @@ import {
   retrieveClientController,
   updateClientController,
 } from "./clients/clients.controllers";
+import {
+  createContactController,
+  listContactsController,
+  retrieveContactController,
+  updateContactController,
+  deleteContactController,
+} from "./contacts/contacts.controllers";
+import { postLoginController } from "./login/login.controllers";
 
 export {
   createClientController,
@@ -12,4 +20,10 @@ export {
   retrieveClientController,
   updateClientController,
   deleteClientController,
+  postLoginController,
+  createContactController,
+  listContactsController,
+  retrieveContactController,
+  updateContactController,
+  deleteContactController,
 };

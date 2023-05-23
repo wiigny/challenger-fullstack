@@ -46,10 +46,10 @@ export const updateClientController = async (
   resp: Response
 ): Promise<Response> => {
   const reqData = req.body;
-  const id = req.params.id;
+
   const clientFounded = resp.locals.clientFounded;
 
-  const updatedClient = await updateClientService(id, reqData, clientFounded);
+  const updatedClient = await updateClientService(reqData, clientFounded);
 
   return resp.status(200).json(updatedClient);
 };
@@ -58,10 +58,9 @@ export const deleteClientController = async (
   req: Request,
   resp: Response
 ): Promise<Response> => {
-  const id = req.params.id;
   const clientFounded = resp.locals.clientFounded;
 
-  await deleteClientService(id, clientFounded);
+  await deleteClientService(clientFounded);
 
   return resp.status(204).send();
 };
