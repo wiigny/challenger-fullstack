@@ -7,9 +7,12 @@ import {
   loginRouter,
   swaggerRouter,
 } from "./routers";
+import cors from "cors";
 import { errorHandle } from "./errors/errors";
 
 export const app: Application = express();
+
+app.use(cors());
 
 app.use(express.json());
 
