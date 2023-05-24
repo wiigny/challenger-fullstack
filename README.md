@@ -12,7 +12,15 @@ npm install
 # Caso use yarn
 yarn
 ```
-## Para 
+
+## Lembre-se de configurar o arquivo .env, configurando de acordo com o .env.example
+
+Para utilizar o Back-end utilizando **Postgres** ↓
+
+```
+NODE_ENV=local
+```
+
 ## Não se esqueça de inciar o servidor
 
 ```bash
