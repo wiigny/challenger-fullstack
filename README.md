@@ -31,7 +31,7 @@ npm run dev
 yarn dev
 ```
 
-Você pode usar utilizar da documentação feita com o swagger em seu **Navegador**, segue o link :) ↓
+Você pode utilizar da documentação feita com o swagger em seu **Navegador**, segue o link :) ↓
 
 ```
 http://localhost:3000/api-docs
