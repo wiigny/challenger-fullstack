@@ -31,13 +31,13 @@ export class Client {
   @Column({ type: "varchar", length: 16 })
   telephone: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: "time" })
   createdAt: string;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: "time" })
   updatedAt: string;
 
-  @DeleteDateColumn({ type: "timestamp" })
+  @DeleteDateColumn({ type: "time" })
   deletedAt: string;
 
   @OneToMany(() => Contact, (contact) => contact.client, { nullable: true })
@@ -45,7 +45,6 @@ export class Client {
 
   @BeforeInsert()
   hashPassword() {
-    console.log(this.password);
     this.password = hashSync(this.password, 10);
   }
 }

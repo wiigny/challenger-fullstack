@@ -11,13 +11,18 @@ const clientRepo = AppDataSource.getRepository(Client);
 
 export const listClientsService = async (
   email: string | undefined
-): Promise<TManyClients> => {
+): Promise<TManyClients | TReturnClientCreated> => {
   let findClient: Client | null | Client[] = null;
 
   if (email) {
     findClient = await clientRepo.findOneBy({ email: email });
 
     if (!findClient) throw new AppError("Detail: Not Found.", 404);
+
+    const findByEmail = returnClientCreatedSchema.parse(findClient);
+    console.log(findByEmail);
+
+    return findByEmail;
   }
 
   findClient = await clientRepo.find();

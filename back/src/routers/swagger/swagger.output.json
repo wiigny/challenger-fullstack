@@ -19,6 +19,7 @@
         "summary": "Entrar na Conta",
         "description": "Essa rota é Resposável para disponibilizar o Token para o Cliente",
         "parameters": [],
+        "tags": ["Login"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -32,7 +33,7 @@
               "examples": {
                 "success": {
                   "value": {
-                    "email": "wigny_36@hotmail.com",
+                    "email": "wigny@kenzie.com",
                     "password": "123456@Ab"
                   }
                 }
@@ -75,8 +76,9 @@
     "/clients": {
       "post": {
         "summary": "Cadastro de Cliente",
-        "description": "Essa rota cria um cliente",
+        "description": "Essa rota cria um cliente, para a senha é necessário que tenha no mínimo 8 caracteres, contendo ao menos 1 caracter maiúsculo, minúsculo, especiais e numero",
         "parameters": [],
+        "tags": ["Client"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -110,13 +112,32 @@
             }
           },
           "409": {
-            "description": "Email already exists"
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "error": {
+                    "value": {
+                      "message": "Email already exists"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
       "get": {
         "summary": "Listagem de Cliente",
         "description": "Essa rota mostra todos os clientes",
+        "tags": ["Client"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Passe algum email para ser usado como busca"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -132,10 +153,12 @@
         }
       }
     },
-    "/clients/{idClient}": {
+    "/clients/{id}": {
       "get": {
         "summary": "Listagem de Cliente Pelo ID",
         "description": "Essa rota mostra um cliente",
+        "tags": ["Client"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -208,6 +231,8 @@
       "patch": {
         "summary": "Atualização de um Cliente",
         "description": "Essa rota atualiza o cliente que foi passado pela url",
+        "tags": ["Client"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -266,6 +291,8 @@
       "delete": {
         "summary": "Deleção de um Cliente",
         "description": "Essa rota Deleta um Cliente que foi passado pela url",
+        "tags": ["Client"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -318,6 +345,8 @@
       "post": {
         "summary": "Cadastro de um Contato",
         "description": "Precisa estar logado para ter acesso, para que possa capturar o Cliente com base no token passado",
+        "tags": ["Contact"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "authorization",
@@ -371,10 +400,12 @@
         }
       }
     },
-    "/contacts/{idContact}": {
+    "/contacts/{id}": {
       "get": {
         "summary": "Listagem do contato Pelo ID",
         "description": "Essa Rota Mostra o Contato que foi passado pelo URL, Precisa estar logado para ter acesso",
+        "tags": ["Contact"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -419,6 +450,8 @@
       "patch": {
         "summary": "Atualização de um Contato",
         "description": "Essa rota atualiza o contato que foi Passado pela URL, Precisa estar logado para ter acesso",
+        "tags": ["Contact"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -463,6 +496,8 @@
       "delete": {
         "summary": "Deleção de um Contato",
         "description": "Essa rota Deleta um Contato que foi Passado pela URL, Precisa estar logado para ter acesso",
+        "tags": ["Contact"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",

@@ -8,28 +8,28 @@ const dataSourceConfig = (): DataSourceOptions => {
 
   const nodeEnv: string | undefined = process.env.NODE_ENV;
 
-  if (nodeEnv === "test") {
-    return {
-      type: "sqlite",
-      database: ".memory",
-      synchronize: true,
-      entities: [entitiesPath],
-    };
-  }
-
   const dbUrl: string | undefined = process.env.DATABASE_URL;
 
   if (!dbUrl) {
     throw new Error("Missin env var: 'DATABASE_URL'");
   }
 
+  if (nodeEnv === "local") {
+    return {
+      type: "postgres",
+      url: dbUrl,
+      synchronize: false,
+      logging: true,
+      entities: [entitiesPath],
+      migrations: [migrationPath],
+    };
+  }
+
   return {
-    type: "postgres",
-    url: dbUrl,
-    synchronize: false,
-    logging: true,
+    type: "sqlite",
+    database: "database.db",
+    synchronize: true,
     entities: [entitiesPath],
-    migrations: [migrationPath],
   };
 };
 

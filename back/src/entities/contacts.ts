@@ -22,10 +22,10 @@ export class Contact {
   @Column({ type: "varchar" })
   telephone: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: "time" })
   createdAt: string;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: "time" })
   updatedAt: string;
 
   @ManyToOne(() => Client, (client) => client.contacts, { nullable: false })
