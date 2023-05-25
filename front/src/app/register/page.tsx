@@ -8,6 +8,7 @@ import Input from "@/components/Input";
 import Link from "next/link";
 import { useContext } from "react";
 import { AuthContext } from "@/hooks/AuthHook";
+import Form from "@/components/Form";
 
 export default function Register() {
   const { userRegister } = useContext(AuthContext);
@@ -21,12 +22,12 @@ export default function Register() {
     reValidateMode: "onChange",
   });
 
-  const submit: SubmitHandler<TRegisterData> = (data) => {
+  const submit: SubmitHandler<TRegisterData> = async (data) => {
     userRegister(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <Form submit={handleSubmit(submit)}>
       <Input
         type="text"
         placeholder="Insert your first name"
@@ -87,6 +88,6 @@ export default function Register() {
       >
         Entrar
       </Link>
-    </form>
+    </Form>
   );
 }

@@ -1,11 +1,11 @@
 import { AuthProvider } from "@/context/AuthContext";
 import { ReactNode } from "react";
 
-interface ILayoutRegister {
+interface ILayoutLogin {
   children: ReactNode;
 }
 
-export default function LayoutRegister({ children }: ILayoutRegister) {
+export default function LayoutLogin({ children }: ILayoutLogin) {
   return (
     <AuthProvider>
       <main>{children}</main>
