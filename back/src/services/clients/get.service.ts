@@ -38,8 +38,6 @@ export const retrieveClientService = async (
 ): Promise<TReturnClientCreated> => {
   const findClient = clientFounded;
 
-  console.log(findClient);
-
   const clientParsed = returnClientCreatedSchema.parse(findClient);
 
   return clientParsed;
