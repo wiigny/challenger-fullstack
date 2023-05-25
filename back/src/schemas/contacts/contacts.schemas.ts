@@ -11,7 +11,7 @@ export const createContactRequiredSchema = createContactSchema.required();
 
 export const returnContactSchema = createContactSchema.extend({
   id: z.string(),
-  client: returnClientCreatedSchema,
+  client: returnClientCreatedSchema.partial(),
   createdAt: z.string().nullish(),
   updatedAt: z.string().nullish(),
   deletedAt: z.string().nullish(),

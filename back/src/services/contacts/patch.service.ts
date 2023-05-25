@@ -1,12 +1,12 @@
 import { AppDataSource } from "../../data-source";
 import { Contact } from "../../entities";
-import { TUpdateContactRequired } from "../../interfaces";
+import { TUpdateContact, TUpdateContactRequired } from "../../interfaces";
 import { updateContactSchema } from "../../schemas";
 
 export const updateContactService = async (
   data: TUpdateContactRequired,
   ContactFounded: Contact
-): Promise<any> => {
+): Promise<TUpdateContact> => {
   const contactRepo = AppDataSource.getRepository(Contact);
 
   const findContact = ContactFounded;

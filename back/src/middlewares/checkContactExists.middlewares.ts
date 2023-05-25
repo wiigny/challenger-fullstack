@@ -12,7 +12,10 @@ export const checkContactExists = async (
 
   const contactRepo = AppDataSource.getRepository(Contact);
 
-  const findContact = await contactRepo.findOneBy({ id: idContact });
+  const findContact = await contactRepo.findOne({
+    where: { id: idContact },
+    relations: { client: true },
+  });
 
   if (!findContact) throw new AppError("Contact not found.", 404);
 
