@@ -1,6 +1,7 @@
 import {
   TCreateClient,
   TManyClients,
+  TReturnClient,
   TReturnClientCreated,
   TUpdateClient,
 } from "./clients/clients.interfaces";
@@ -16,6 +17,7 @@ import { TLoginRequest } from "./login/login.interfaces";
 
 export {
   TCreateClient,
+  TReturnClient,
   TReturnClientCreated,
   TManyClients,
   TUpdateClient,

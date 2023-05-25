@@ -1,12 +1,12 @@
 import { AppDataSource } from "../../data-source";
 import { Client } from "../../entities";
 import { AppError } from "../../errors/errors";
-import { TCreateClient, TReturnClientCreated } from "../../interfaces";
-import { returnClientCreatedSchema } from "../../schemas";
+import { TCreateClient, TReturnClient } from "../../interfaces";
+import { returnClientSchema } from "../../schemas";
 
 export const createClientService = async (
   request: TCreateClient
-): Promise<TReturnClientCreated> => {
+): Promise<TReturnClient> => {
   const clientRepo = AppDataSource.getRepository(Client);
 
   const find = await clientRepo.findOneBy({ email: request.email });
@@ -17,7 +17,7 @@ export const createClientService = async (
 
   await clientRepo.save(clientCreated);
 
-  const clientPassOmited = returnClientCreatedSchema.parse(clientCreated);
+  const clientPassOmited = returnClientSchema.parse(clientCreated);
 
   return clientPassOmited;
 };

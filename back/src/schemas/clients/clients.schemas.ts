@@ -12,15 +12,29 @@ export const createClientSchema = z.object({
   telephone: z.string().max(16),
 });
 
-export const returnClientSchema = createClientSchema.extend({
-  id: z.string(),
-  createdAt: z.string().nullish(),
-  updatedAt: z.string().nullish(),
-  deletedAt: z.string().nullish(),
-});
+export const returnClientSchema = createClientSchema
+  .extend({
+    id: z.string(),
+    createdAt: z.string().nullish(),
+    updatedAt: z.string().nullish(),
+    deletedAt: z.string().nullish(),
+  })
+  .omit({ password: true });
 
-export const returnClientCreatedSchema = returnClientSchema.omit({
-  password: true,
+export const returnClientCreatedSchema = returnClientSchema.extend({
+  contacts: z.array(
+    z
+      .object({
+        id: z.string(),
+        name: z.string().min(3).max(20),
+        email: z.string().email().max(40).nullish(),
+        telephone: z.string().max(16),
+        createdAt: z.string().nullish(),
+        updatedAt: z.string().nullish(),
+        deletedAt: z.string().nullish(),
+      })
+      .partial()
+  ),
 });
 
 export const returnManyClientsSchema = returnClientCreatedSchema.array();

@@ -22,6 +22,9 @@ export const checkClientExistsMiddlewares = async (
     where: {
       id: id,
     },
+    relations: {
+      contacts: true,
+    },
   });
 
   if (!clientExists) throw new AppError("Client not found.", 404);
