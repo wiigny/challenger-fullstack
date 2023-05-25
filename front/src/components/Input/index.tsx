@@ -6,6 +6,7 @@ export default function Input({
   label,
   required,
   register,
+  value,
 }: IInputProps) {
   return (
     <fieldset>
@@ -15,6 +16,7 @@ export default function Input({
         placeholder={placeholder}
         {...register}
         required={required}
+        value={value}
       />
     </fieldset>
   );

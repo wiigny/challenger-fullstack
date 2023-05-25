@@ -1,7 +1,11 @@
-import { AuthProvider } from "@/context/AuthContext";
+"use client";
+
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { UserProvider } from "@/context/UserContext";
+import { CacheProvider } from "@chakra-ui/next-js";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <UserProvider>
-      <html lang="pt-br">
-        <body className={`${inter.className} h-screen`}>{children}</body>
-      </html>
-    </UserProvider>
+    <html lang="pt-br">
+      <UserProvider>
+        <body className={`${inter.className} h-screen`}>
+          <Providers>{children}</Providers>
+        </body>
+      </UserProvider>
+    </html>
   );
 }

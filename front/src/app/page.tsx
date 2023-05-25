@@ -1,9 +1,15 @@
 "use client";
 import Button from "@/components/Button";
+import ListContacts from "@/components/ListContacts";
+import ModalAdd from "@/components/Modals/ModalAdd";
 import { useContact } from "@/hooks/UserHook";
+import { useDisclosure } from "@chakra-ui/react";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 export default function Home() {
-  const { user } = useContact();
+  const { user, addContact } = useContact();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <main className="bg-gray-800 h-full py-52 ">
@@ -22,10 +28,38 @@ export default function Home() {
           </div>
         </section>
         <section className="bg-gray-200 rounded-xl">
-          <h2>Contatos</h2>
-          <ul></ul>
+          <div className="flex justify-between pt-5 px-5">
+            <h2 className="text-2xl">Contatos</h2>
+            <Button type="button" click={onOpen}>
+              {<AiOutlineUserAdd size={24} />}
+            </Button>
+          </div>
+          {!user?.contacts.length ? (
+            <h3>Você não possuí contatos</h3>
+          ) : (
+            <ul className="flex flex-col gap-4 p-5">
+              {user.contacts.map((contact, index) => (
+                <div
+                  key={index}
+                  className="border-2 border-solid border-gray-400 p-2 rounded-lg"
+                >
+                  <ListContacts
+                    id={contact.id}
+                    contacts={contact}
+                    classes="flex gap-12"
+                  />
+                </div>
+              ))}
+            </ul>
+          )}
         </section>
       </div>
+      <ModalAdd
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpen={onOpen}
+        addContact={addContact}
+      />
     </main>
   );
 }

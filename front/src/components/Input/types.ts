@@ -4,6 +4,7 @@ export interface IInputProps {
   type: string;
   placeholder: string;
   label: string;
-  required: boolean;
+  required?: boolean;
   register?: UseFormRegisterReturn;
+  value?: string;
 }
