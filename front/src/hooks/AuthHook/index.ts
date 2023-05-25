@@ -1,6 +1,8 @@
 "use client";
 
-import { IAuthContextProps } from "@/context/AuthContext/types";
-import { createContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext } from "react";
 
-export const AuthContext = createContext({} as IAuthContextProps);
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

@@ -2,13 +2,12 @@
 
 import { TRegisterData } from "@/app/register/validator";
 import { api } from "@/services/api/api";
-import { AuthContext } from "@/hooks/AuthHook";
 import { useRouter } from "next/navigation";
 import { TLoginData } from "@/app/login/validator";
+import { createContext } from "react";
+import { IAuthContextProps, IAuthProviderProps } from "./types";
 
-interface IAuthProviderProps {
-  children: React.ReactNode;
-}
+export const AuthContext = createContext({} as IAuthContextProps);
 
 export const AuthProvider = ({ children }: IAuthProviderProps) => {
   const router = useRouter();

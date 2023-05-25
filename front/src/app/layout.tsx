@@ -1,5 +1,7 @@
+import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { UserProvider } from "@/context/UserContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <UserProvider>
+      <html lang="pt-br">
+        <body className={`${inter.className} h-screen`}>{children}</body>
+      </html>
+    </UserProvider>
   );
 }

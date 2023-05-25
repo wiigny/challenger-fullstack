@@ -1,16 +1,15 @@
 "use client";
 
 import Form from "@/components/Form";
-import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "@/components/Input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import loginSchema, { TLoginData } from "./validator";
-import { useContext } from "react";
-import { AuthContext } from "@/hooks/AuthHook";
 import Button from "@/components/Button";
+import loginSchema, { TLoginData } from "./validator";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "@/hooks/AuthHook";
 
 export default function Login() {
-  const { userLogin } = useContext(AuthContext);
+  const { userLogin } = useAuth();
 
   const { register, handleSubmit } = useForm<TLoginData>({
     reValidateMode: "onChange",

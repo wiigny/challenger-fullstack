@@ -5,3 +5,6 @@ export interface IAuthContextProps {
   userRegister: (data: TRegisterData) => Promise<void>;
   userLogin: (data: TLoginData) => Promise<void>;
 }
+export interface IAuthProviderProps {
+  children: React.ReactNode;
+}

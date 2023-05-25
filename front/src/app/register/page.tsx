@@ -1,17 +1,16 @@
 "use client";
 
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import registerSchema, { TRegisterData } from "./validator";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Link from "next/link";
-import { useContext } from "react";
-import { AuthContext } from "@/hooks/AuthHook";
 import Form from "@/components/Form";
+import registerSchema, { TRegisterData } from "./validator";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "@/hooks/AuthHook";
 
 export default function Register() {
-  const { userRegister } = useContext(AuthContext);
+  const { userRegister } = useAuth();
 
   const {
     register,
