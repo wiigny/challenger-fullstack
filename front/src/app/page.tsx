@@ -36,10 +36,10 @@ export function LoadingHome() {
   return (
     <>
       <Header updateUser={updateUser} />
-      <main className="bg-gray-800 py-52 ">
+      <main className="bg-gray-800 py-24 ">
         <div className="w-4/5 m-auto flex flex-col gap-8">
           <section className="bg-gray-200 rounded-xl py-8">
-            <div className="flex flex-col  px-5 m-auto w-full h-full top-[-70px] md:top-[-100px] gap-5">
+            <div className="flex flex-col px-5 m-auto w-full h-full gap-5">
               <h1 className="font-bold text-lg text-left">
                 <span className="font-normal text-md">Bem-vindo: </span>
                 {user &&
