@@ -10,16 +10,43 @@ import {
   IResponseUser,
   IDecoded,
 } from "./types";
-import { TAddContact } from "@/components/Modals/ModalAdd/validator";
+
+import { TUserUpdate } from "@/components/Modals/ModalUserUpdate/validator";
+import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator";
+import { TAddContact } from "@/components/Modals/ModalContactAdd/validator";
 
 export const UserContext = createContext({} as IUserContextProps);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const router = useRouter();
-  const getToken = localStorage.getItem("Token");
 
   const [user, setUser] = useState<IResponseUser>();
-  const [token, setToken] = useState<string | null>(getToken);
+
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("Token")
+  );
+
+  const getUser = async (
+    id: string,
+    authToken: string | null = token
+  ): Promise<IResponseUser | undefined> => {
+    try {
+      const response: { data: IResponseUser } = await api.get(
+        `/clients/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
+      setUser(response.data);
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -31,13 +58,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       if (token) {
         const decoded: IDecoded = jwtDecode(token);
 
-        const response = await api.get(`/clients/${decoded.sub}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setUser(response.data);
+        getUser(decoded.sub);
       }
     })();
   }, [token]);
@@ -47,19 +68,74 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       data = { name: data.name, telephone: data.telephone };
     }
 
-    const response = await api.post("/contacts", data, {
+    try {
+      await api.post("/contacts", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      getUser(user!.id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateContact = async (id: string, data: TUpdateContact) => {
+    if (data.email === "") {
+      data = { name: data.name, telephone: data.telephone };
+    }
+
+    try {
+      await api.patch(`/contacts/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      getUser(user!.id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const removeContact = async (id: string) => {
+    try {
+      await api.delete(`/contacts/${id}`, {
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
+      });
+
+      getUser(user!.id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateUser = async (data: TUserUpdate) => {
+    const response = await api.patch(`/clients/${user!.id}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    user?.contacts.push(response.data);
-
-    setUser(user);
+    setUser(response.data);
   };
 
   return (
-    <UserContext.Provider value={{ user, addContact }}>
+    <UserContext.Provider
+      value={{
+        user,
+        addContact,
+        removeContact,
+        updateContact,
+        setUser,
+        updateUser,
+        setToken,
+        getUser,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

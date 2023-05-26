@@ -7,4 +7,6 @@ export interface IInputProps {
   required?: boolean;
   register?: UseFormRegisterReturn;
   value?: string;
+  defaultValue?: string;
+  fieldClasses?: string;
 }

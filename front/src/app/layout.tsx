@@ -2,9 +2,6 @@
 
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { UserProvider } from "@/context/UserContext";
-import { CacheProvider } from "@chakra-ui/next-js";
-import { ChakraProvider } from "@chakra-ui/react";
 import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,11 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <UserProvider>
-        <body className={`${inter.className} h-screen`}>
-          <Providers>{children}</Providers>
-        </body>
-      </UserProvider>
+      <body className={`${inter.className} h-screen bg-gray-800`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

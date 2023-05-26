@@ -1,5 +1,7 @@
-import { TAddContact } from "@/components/Modals/ModalAdd/validator";
-import { ReactNode } from "react";
+import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator";
+import { TAddContact } from "@/components/Modals/ModalContactAdd/validator";
+import { TUserUpdate } from "@/components/Modals/ModalUserUpdate/validator";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface IUserProviderProps {
   children: ReactNode;
@@ -8,6 +10,15 @@ export interface IUserProviderProps {
 export interface IUserContextProps {
   user: IResponseUser | undefined;
   addContact: (data: TAddContact) => void;
+  removeContact: (id: string) => void;
+  updateContact: (id: string, data: TUpdateContact) => void;
+  setUser: Dispatch<SetStateAction<IResponseUser | undefined>>;
+  updateUser: (data: TUserUpdate) => void;
+  setToken: Dispatch<SetStateAction<string | null>>;
+  getUser: (
+    id: string,
+    authToken: string | null
+  ) => Promise<IResponseUser | undefined>;
 }
 
 export interface IResponseUser {

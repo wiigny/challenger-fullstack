@@ -21,13 +21,17 @@ interface IModalAddProps {
   onClose: () => void;
 }
 
-export default function ModalAdd({
+export default function ModalContactAdd({
   addContact,
   isOpen,
   onOpen,
   onClose,
 }: IModalAddProps) {
-  const { register, handleSubmit } = useForm<TAddContact>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TAddContact>({
     resolver: zodResolver(addContactSchema),
   });
 
@@ -47,28 +51,44 @@ export default function ModalAdd({
               <Input
                 type="text"
                 placeholder="nome"
-                label="Nome"
+                label="Nome: "
                 register={register("name")}
                 required={true}
               />
+              {errors.name && (
+                <p className="text-sm text-red-900">{errors.name.message}</p>
+              )}
               <Input
                 type="email"
                 placeholder="email"
-                label="E-mail"
+                label="E-mail: "
                 register={register("email")}
               />
+              {errors.email && (
+                <p className="text-sm text-red-900">{errors.email.message}</p>
+              )}
               <Input
                 type="text"
                 placeholder="telefone"
-                label="Telefone"
+                label="Telefone: "
                 register={register("telephone")}
                 required={true}
               />
-              <Button type="submit">Salvar</Button>
+              {errors.telephone && (
+                <p className="text-sm text-red-900">
+                  {errors.telephone.message}
+                </p>
+              )}
+              <div className="w-full flex justify-end mt-8 mb-2">
+                <Button
+                  type="submit"
+                  classes="bg-sky-500 p-3 px-4 rounded-lg text-white text-right hover:bg-sky-700 duration-300"
+                >
+                  Salvar
+                </Button>
+              </div>
             </Form>
           </ModalBody>
-
-          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>

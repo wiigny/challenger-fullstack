@@ -5,6 +5,8 @@ import Input from "@/components/Input";
 import Link from "next/link";
 import Form from "@/components/Form";
 import registerSchema, { TRegisterData } from "./validator";
+import Image from "next/image";
+import bg from "../../assets/bg.jpg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/hooks/AuthHook";
@@ -26,67 +28,101 @@ export default function Register() {
   };
 
   return (
-    <Form submit={handleSubmit(submit)}>
-      <Input
-        type="text"
-        placeholder="Insert your first name"
-        required={true}
-        register={register("firstName")}
-        label="First Name"
-      />
-      {errors.firstName && <p>{errors.firstName.message}</p>}
+    <div className="w-4/5 m-auto flex items-center justify-center h-screen flex-row-reverse">
+      <section className="h-4/5 w-full rounded-r-xl overflow-hidden">
+        <Form
+          submit={handleSubmit(submit)}
+          classes="bg-gray-200 h-full flex flex-col items-start justify-center p-5"
+        >
+          <h1 className="text-2xl pb-8 font-bold text-gray-700">Registrar</h1>
+          <Input
+            type="text"
+            placeholder="Digite seu nome"
+            required={true}
+            register={register("firstName")}
+            label="Nome"
+            fieldClasses={"w-full"}
+          />
+          {errors.firstName && (
+            <p className="text-sm">{errors.firstName.message}</p>
+          )}
 
-      <Input
-        type="text"
-        placeholder="Insert your last name"
-        required={true}
-        register={register("lastName")}
-        label="Last Name"
-      />
-      {errors.lastName && <p>{errors.lastName.message}</p>}
+          <Input
+            type="text"
+            placeholder="Digite seu sobrenome"
+            required={true}
+            register={register("lastName")}
+            label="Sobrenome"
+            fieldClasses={"w-full"}
+          />
+          {errors.lastName && (
+            <p className="text-sm">{errors.lastName.message}</p>
+          )}
 
-      <Input
-        type="email"
-        placeholder="Insert your email"
-        label="E-mail"
-        required={true}
-        register={register("email")}
-      />
-      {errors.email && <p>{errors.email.message}</p>}
+          <Input
+            type="email"
+            placeholder="Digite um e-mail válido"
+            label="E-mail"
+            required={true}
+            register={register("email")}
+            fieldClasses={"w-full"}
+          />
+          {errors.email && <p className="text-sm">{errors.email.message}</p>}
 
-      <Input
-        type="password"
-        placeholder="Insert your password"
-        required={true}
-        register={register("password")}
-        label="Password"
-      />
-      {errors.password && <p>{errors.password.message}</p>}
+          <Input
+            type="password"
+            placeholder="Digite sua senha"
+            required={true}
+            register={register("password")}
+            label="Senha"
+            fieldClasses={"w-full"}
+          />
+          {errors.password && (
+            <p className="text-sm">{errors.password.message}</p>
+          )}
 
-      <Input
-        type="tel"
-        placeholder="Insert your telephone"
-        required={true}
-        register={register("telephone")}
-        label="Telephone"
-      />
-      {errors.telephone && <p>{errors.telephone.message}</p>}
+          <Input
+            type="tel"
+            placeholder="Digite seu telefone"
+            required={true}
+            register={register("telephone")}
+            label="Telefone"
+            fieldClasses={"w-full"}
+          />
+          {errors.telephone && (
+            <p className="text-sm">{errors.telephone.message}</p>
+          )}
 
-      <Button
-        type="submit"
-        classes="p-2 border-solid border-2 border-sky-600 rounded-lg"
-      >
-        Registrar
-      </Button>
+          <div className="w-full flex flex-col mt-8 mb-2 gap-2">
+            <Button
+              type="submit"
+              classes="bg-sky-500 p-3 px-4 rounded-lg text-white text-center hover:bg-sky-600 duration-300"
+            >
+              Registrar
+            </Button>
 
-      <p className="p-2">Já possuí uma conta ?</p>
+            <p className="p-2 text-sm text-gray-500">Já possuí uma conta ?</p>
 
-      <Link
-        href={"/login"}
-        className="p-2 border-solid border-2 border-sky-600 rounded-lg"
-      >
-        Entrar
-      </Link>
-    </Form>
+            <Link
+              href={"/login"}
+              className="p-2 border-solid border-2 border-sky-600 text-center rounded-lg duration-300 hover:bg-sky-600 hover:text-white"
+            >
+              Entrar
+            </Link>
+          </div>
+        </Form>
+      </section>
+      <section className="w-full h-4/5 rounded-l-xl overflow-hidden">
+        <figure className="w-full h-full ">
+          <Image
+            src={bg.src}
+            alt="bg"
+            width={1000}
+            height={1000}
+            className="h-full object-cover blur-sm"
+          />
+        </figure>
+      </section>
+    </div>
   );
 }

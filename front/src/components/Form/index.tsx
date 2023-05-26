@@ -1,10 +1,15 @@
-import { DOMAttributes, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface IFormProps {
   children: ReactNode;
   submit: () => void;
+  classes?: string;
 }
 
-export default function Form({ children, submit }: IFormProps) {
-  return <form onSubmit={submit}>{children}</form>;
+export default function Form({ children, submit, classes }: IFormProps) {
+  return (
+    <form onSubmit={submit} className={classes}>
+      {children}
+    </form>
+  );
 }
