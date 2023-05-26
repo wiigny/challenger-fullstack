@@ -3,7 +3,9 @@
 Para testar o projeto, é necessário instalar as dependências, que foram utilizados nesse projeto.
 Portanto utilize os comandos abaixo ↓
 
-## Instalação Back-end
+## Para o Back-end
+
+Instalação Back-end
 
 ```bash
 # Caso use npm
@@ -36,3 +38,35 @@ Você pode utilizar da documentação feita com o swagger em seu **Navegador**, 
 ```
 http://localhost:3000/api-docs
 ```
+
+
+## Para o Front-end
+
+Instalação Front-end
+
+```bash
+# Caso use npm
+npm install
+
+# Caso use yarn
+yarn
+```
+
+## Rodando o Front-end
+
+
+```bash
+# Caso use npm
+npm run dev
+
+# Caso use yarn
+yarn dev
+```
+
+
+## Objetivos
+
+
+Utilizei NextJs App Router e Tailwind, para poder pegar mais pratica :)
+
+Obrigado !!!

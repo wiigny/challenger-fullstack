@@ -73,7 +73,7 @@ export function LoadingHome() {
                     <ListContacts
                       id={contact.id}
                       contacts={contact}
-                      classes="flex gap-12"
+                      classes="flex gap-12 justify-between px-2"
                       click={editOrRemove}
                     />
                   </div>
