@@ -14,7 +14,7 @@ export default function Input({
     <fieldset className={`flex items-start mt-3 mb-1 flex-col ${fieldClasses}`}>
       <label className="">{label}</label>
       <input
-        className="border-2 border-solid border-gray-200 rounded-lg p-1 px-3 w-full"
+        className="appearance-none border-2 border-solid border-gray-200 rounded-lg p-1 px-3 w-full"
         type={type}
         placeholder={placeholder}
         {...register}

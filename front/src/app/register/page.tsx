@@ -96,7 +96,7 @@ export default function Register() {
           <div className="w-full flex flex-col mt-8 mb-2 gap-2">
             <Button
               type="submit"
-              classes="bg-sky-500 p-3 px-4 rounded-lg text-white text-center hover:bg-sky-600 duration-300"
+              classes="bg-[#54b9cb] hover:bg-[#348e9e] p-3 px-4 rounded-lg text-white text-center duration-300"
             >
               Registrar
             </Button>
@@ -105,7 +105,7 @@ export default function Register() {
 
             <Link
               href={"/login"}
-              className="p-2 border-solid border-2 border-sky-600 text-center rounded-lg duration-300 hover:bg-sky-600 hover:text-white"
+              className="p-2 border-solid border-2 border-[#54b9cb] text-center rounded-lg duration-300 hover:bg-[#54b9cb] hover:text-white"
             >
               Entrar
             </Link>

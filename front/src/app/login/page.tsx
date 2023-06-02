@@ -50,7 +50,7 @@ export default function Login() {
           <div className="w-full flex flex-col mt-8 mb-2 gap-2">
             <Button
               type="submit"
-              classes="bg-sky-500 p-3 px-4 rounded-lg text-white text-center hover:bg-sky-600 duration-300"
+              classes="bg-[#54b9cb] hover:bg-[#348e9e] p-3 px-4 rounded-lg text-white text-center duration-300"
             >
               Entrar
             </Button>

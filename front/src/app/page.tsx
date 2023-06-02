@@ -1,14 +1,15 @@
 "use client";
+
 import Button from "@/components/Button";
+import { FigureAvatar } from "@/components/FigureAvatar";
 import Header from "@/components/Header";
 import ListContacts from "@/components/ListContacts";
 import ModalContactAdd from "@/components/Modals/ModalContactAdd";
-
 import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator";
-
 import { UserProvider } from "@/context/UserContext";
 import { useContact } from "@/hooks/UserHook";
 import { useDisclosure } from "@chakra-ui/react";
+import Image from "next/image";
 import { AiOutlineUserAdd } from "react-icons/ai";
 
 export default function Home() {
@@ -37,11 +38,12 @@ export function LoadingHome() {
     <>
       <Header updateUser={updateUser} />
       <main className="bg-gray-800 py-24">
-        <div className="w-4/5 m-auto flex flex-col gap-8">
-          <section className="bg-gray-200 rounded-xl py-8">
-            <div className="flex flex-col px-5 m-auto w-full h-full gap-5">
-              <h1 className="font-bold text-lg text-left">
-                <span className="font-normal text-md">Bem-vindo: </span>
+        <div className="w-4/5 m-auto flex flex-col gap-8 items-center">
+          <section className="bg-gray-200 rounded-xl pb-8 pt-16 relative w-full lg:w-[70%] duration-300">
+            <FigureAvatar user={user} />
+            <div className="flex justify-around px-5 m-auto w-full h-full gap-5 ">
+              <h1 className="font-bold text-lg text-center">
+                <span className="font-normal text-md"></span>
                 {user &&
                   user.firstName[0].toUpperCase() +
                     user.firstName.substring(1) +
@@ -52,7 +54,7 @@ export function LoadingHome() {
               <p className="text-md">Telefone: {user?.telephone}</p>
             </div>
           </section>
-          <section className="bg-gray-200 rounded-xl">
+          <section className="bg-gray-200 rounded-xl w-full">
             <div className="flex justify-between pt-5 px-5">
               <h2 className="text-2xl">Contatos</h2>
               <Button type="button" click={onOpen}>
@@ -68,12 +70,14 @@ export function LoadingHome() {
                 {user.contacts.map((contact, index) => (
                   <div
                     key={index}
-                    className="border-2 border-solid border-gray-400 p-2 rounded-lg"
+                    className={`border-2 border-solid ${
+                      index % 2 === 0 ? "border-gray-400" : "border-gray-300"
+                    } p-2 rounded-lg`}
                   >
                     <ListContacts
                       id={contact.id}
                       contacts={contact}
-                      classes="flex gap-12 justify-between px-2"
+                      classes="flex justify-between px-2"
                       click={editOrRemove}
                     />
                   </div>

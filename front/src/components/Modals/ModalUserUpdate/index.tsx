@@ -13,6 +13,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/components/Button";
 import userUpdateSchema, { TUserUpdate } from "./validator";
 import { useContact } from "@/hooks/UserHook";
+import { useState } from "react";
+import { FileUploader } from "react-drag-drop-files";
 
 interface IModalUserUpdateProps {
   updateUser?: (data: TUserUpdate) => void;
@@ -46,7 +48,7 @@ export default function ModalUserUpdate({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Atualizar Contato</ModalHeader>
+          <ModalHeader>Atualizar Perfil</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Form submit={handleSubmit(submit)}>
@@ -108,10 +110,11 @@ export default function ModalUserUpdate({
                   {errors.telephone.message}
                 </p>
               )}
+
               <div className="w-full flex justify-end mt-8 mb-2">
                 <Button
                   type="submit"
-                  classes="bg-sky-500 p-3 px-4 rounded-lg text-white text-right hover:bg-sky-700 duration-300"
+                  classes="bg-[#54b9cb] hover:bg-[#348e9e] p-3 px-4 rounded-lg text-white text-right duration-300"
                 >
                   Atualizar
                 </Button>

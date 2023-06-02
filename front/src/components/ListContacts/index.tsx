@@ -28,11 +28,11 @@ export default function ListContacts({
         {contacts.email && <p>Email: {contacts.email} </p>}
       </div>
       <div className="flex gap-4 justify-center items-center">
-        <Button type="button" click={() => click(id)}>
-          {<RiCloseCircleLine size={24} />}
-        </Button>
         <Button type="button" click={onOpen}>
           {<AiOutlineEdit size={24} />}
+        </Button>
+        <Button type="button" click={() => click(id)}>
+          {<RiCloseCircleLine size={24} />}
         </Button>
       </div>
       {isOpen && (

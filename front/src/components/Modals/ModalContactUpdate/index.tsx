@@ -87,7 +87,7 @@ export default function ModalContactUpdate({
               <div className="w-full flex justify-end mt-8 mb-2">
                 <Button
                   type="submit"
-                  classes="bg-sky-500 p-3 px-4 rounded-lg text-white text-right hover:bg-sky-700 duration-300"
+                  classes="bg-[#54b9cb] hover:bg-[#348e9e] p-3 px-4 rounded-lg text-white text-right duration-300"
                 >
                   Atualizar
                 </Button>

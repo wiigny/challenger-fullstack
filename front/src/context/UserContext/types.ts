@@ -9,6 +9,7 @@ export interface IUserProviderProps {
 
 export interface IUserContextProps {
   user: IResponseUser | undefined;
+  img: string;
   addContact: (data: TAddContact) => void;
   removeContact: (id: string) => void;
   updateContact: (id: string, data: TUpdateContact) => void;
@@ -19,6 +20,7 @@ export interface IUserContextProps {
     id: string,
     authToken: string | null
   ) => Promise<IResponseUser | undefined>;
+  updateImage: (file: File) => void;
 }
 
 export interface IResponseUser {
@@ -26,6 +28,7 @@ export interface IResponseUser {
   lastName: string;
   telephone: string;
   email: string;
+  avatar: null | string;
   id: string;
   contacts: IUserContacts[];
   createdAt: string;

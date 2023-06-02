@@ -22,6 +22,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const [user, setUser] = useState<IResponseUser>();
 
+  const [img, setImg] = useState<string>("");
+
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("Token")
   );
@@ -99,6 +101,25 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const updateImage = async (file: File) => {
+    try {
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      const response = await api.patch(`/update-avatar`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setImg(response.data.avatarUrl);
+
+      user!.avatar = response.data.avatarUrl;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const removeContact = async (id: string) => {
     try {
       await api.delete(`/contacts/${id}`, {
@@ -127,6 +148,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     <UserContext.Provider
       value={{
         user,
+        img,
         addContact,
         removeContact,
         updateContact,
@@ -134,6 +156,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         updateUser,
         setToken,
         getUser,
+        updateImage,
       }}
     >
       {children}
