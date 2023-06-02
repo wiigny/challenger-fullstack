@@ -3,7 +3,10 @@ import {
   listClientsService,
   retrieveClientService,
 } from "./clients/get.service";
-import { updateClientService } from "./clients/patch.service";
+import {
+  updateClientService,
+  uploadAvatarService,
+} from "./clients/patch.service";
 import { createClientService } from "./clients/post.service";
 import { deleteContactService } from "./contacts/delete.service";
 import {
@@ -26,4 +29,5 @@ export {
   deleteContactService,
   listContactsService,
   retrieveContactService,
+  uploadAvatarService,
 };

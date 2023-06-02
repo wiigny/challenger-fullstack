@@ -15,6 +15,7 @@ export const createClientSchema = z.object({
 export const returnClientSchema = createClientSchema
   .extend({
     id: z.string(),
+    avatar: z.union([z.string(), z.null()]),
     createdAt: z.string().nullish(),
     updatedAt: z.string().nullish(),
     deletedAt: z.string().nullish(),
@@ -37,7 +38,7 @@ export const returnClientCreatedSchema = returnClientSchema.extend({
   ),
 });
 
-export const returnManyClientsSchema = returnClientCreatedSchema.array();
+export const returnManyClientsSchema = returnClientSchema.array();
 
 export const updateClientSchema = createClientSchema.partial();
 

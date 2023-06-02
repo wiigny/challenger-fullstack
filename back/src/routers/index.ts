@@ -1,6 +1,12 @@
-import { clientsRouter } from "./clients/clients.routers";
+import { clientsAvatarRouter, clientsRouter } from "./clients/clients.routers";
 import { contactsRouter } from "./contacts/contacts.routers";
 import { loginRouter } from "./login/login.routes";
 import { swaggerRouter } from "./swagger/swagger.routers";
 
-export { clientsRouter, contactsRouter, loginRouter, swaggerRouter };
+export {
+  clientsRouter,
+  clientsAvatarRouter,
+  contactsRouter,
+  loginRouter,
+  swaggerRouter,
+};

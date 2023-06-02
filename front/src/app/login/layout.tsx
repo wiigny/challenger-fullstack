@@ -8,10 +8,8 @@ interface ILayoutLogin {
 
 export default function LayoutLogin({ children }: ILayoutLogin) {
   return (
-    <UserProvider>
-      <AuthProvider>
-        <main>{children}</main>
-      </AuthProvider>
-    </UserProvider>
+    <AuthProvider>
+      <main>{children}</main>
+    </AuthProvider>
   );
 }

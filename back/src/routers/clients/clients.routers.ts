@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import {
   checkClientExistsMiddlewares,
+  checkImageUpload,
   checkToken,
   verifyDataMiddle,
 } from "../../middlewares";
@@ -12,9 +13,12 @@ import {
   updateClientController,
   deleteClientController,
   retrieveClientController,
+  updateAvatarController,
 } from "../../controllers";
 
 export const clientsRouter: Router = Router();
+
+export const clientsAvatarRouter: Router = Router();
 
 clientsRouter.post(
   "",
@@ -44,4 +48,11 @@ clientsRouter.delete(
   checkClientExistsMiddlewares,
   checkToken,
   deleteClientController
+);
+
+clientsAvatarRouter.patch(
+  "",
+  checkToken,
+  checkImageUpload.single("avatar"),
+  updateAvatarController
 );

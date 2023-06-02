@@ -3,6 +3,7 @@ import {
   deleteClientController,
   listClientsController,
   retrieveClientController,
+  updateAvatarController,
   updateClientController,
 } from "./clients/clients.controllers";
 import {
@@ -26,4 +27,5 @@ export {
   retrieveContactController,
   updateContactController,
   deleteContactController,
+  updateAvatarController,
 };

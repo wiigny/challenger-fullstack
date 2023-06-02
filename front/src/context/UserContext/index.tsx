@@ -26,6 +26,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     localStorage.getItem("Token")
   );
 
+  console.log("oi");
   const getUser = async (
     id: string,
     authToken: string | null = token

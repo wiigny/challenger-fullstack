@@ -5,6 +5,7 @@ import {
   listClientsService,
   retrieveClientService,
   updateClientService,
+  uploadAvatarService,
 } from "../../services";
 
 export const createClientController = async (
@@ -52,6 +53,14 @@ export const updateClientController = async (
   const updatedClient = await updateClientService(reqData, clientFounded);
 
   return resp.status(200).json(updatedClient);
+};
+
+export const updateAvatarController = async (req: Request, resp: Response) => {
+  const file = req.file;
+
+  const url = await uploadAvatarService(file, resp);
+
+  return resp.status(200).json(url);
 };
 
 export const deleteClientController = async (

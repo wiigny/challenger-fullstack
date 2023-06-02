@@ -16,6 +16,9 @@ export class Client {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column({ type: "text", default: null, nullable: true })
+  avatar: string | null;
+
   @Column({ type: "varchar", length: 20 })
   firstName: string;
 

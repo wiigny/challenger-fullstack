@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { Application } from "express";
 import {
+  clientsAvatarRouter,
   clientsRouter,
   contactsRouter,
   loginRouter,
@@ -19,6 +20,8 @@ app.use(express.json());
 app.use("/api-docs", swaggerRouter);
 
 app.use("/clients", clientsRouter);
+
+app.use("/update-avatar", clientsAvatarRouter);
 
 app.use("/contacts", contactsRouter);
 

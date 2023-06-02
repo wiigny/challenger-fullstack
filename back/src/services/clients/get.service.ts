@@ -20,7 +20,6 @@ export const listClientsService = async (
     if (!findClient) throw new AppError("Detail: Not Found.", 404);
 
     const findByEmail = returnClientCreatedSchema.parse(findClient);
-    console.log(findByEmail);
 
     return findByEmail;
   }

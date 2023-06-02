@@ -38,6 +38,10 @@ export const checkToken = async (
 
   resp.locals.clientToken = checkClientToken;
 
+  if (req.baseUrl.includes("/update-avatar")) {
+    return next();
+  }
+
   if (req.baseUrl.includes("/contacts")) {
     return next();
   }
