@@ -15,7 +15,6 @@ export interface IUserContextProps {
   updateContact: (id: string, data: TUpdateContact) => void;
   setUser: Dispatch<SetStateAction<IResponseUser | undefined>>;
   updateUser: (data: TUserUpdate) => void;
-  setToken: Dispatch<SetStateAction<string | null>>;
   getUser: (
     id: string,
     authToken: string | null

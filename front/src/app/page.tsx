@@ -9,7 +9,6 @@ import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator
 import { UserProvider } from "@/context/UserContext";
 import { useContact } from "@/hooks/UserHook";
 import { useDisclosure } from "@chakra-ui/react";
-import Image from "next/image";
 import { AiOutlineUserAdd } from "react-icons/ai";
 
 export default function Home() {
@@ -56,7 +55,7 @@ export function LoadingHome() {
           </section>
           <section className="bg-gray-200 rounded-xl w-full">
             <div className="flex justify-between pt-5 px-5">
-              <h2 className="text-2xl">Contatos</h2>
+              <h2 className="text-xl font-bold">Contatos</h2>
               <Button type="button" click={onOpen}>
                 {<AiOutlineUserAdd size={24} />}
               </Button>
@@ -77,7 +76,7 @@ export function LoadingHome() {
                     <ListContacts
                       id={contact.id}
                       contacts={contact}
-                      classes="flex justify-between px-2"
+                      classes="flex justify-between px-2 text-sm xl:text-lg"
                       click={editOrRemove}
                     />
                   </div>

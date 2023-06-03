@@ -28,11 +28,11 @@ export default function Register() {
   };
 
   return (
-    <div className="w-4/5 m-auto flex items-center justify-center h-screen flex-row-reverse">
-      <section className="h-4/5 w-full rounded-r-xl overflow-hidden">
+    <div className="w-4/5 m-auto h-max flex items-center justify-center flex-row-reverse">
+      <section className="w-full h-[668px] sm:rounded-r-xl sm:rounded-l-none rounded-xl bg-gray-200">
         <Form
           submit={handleSubmit(submit)}
-          classes="bg-gray-200 h-full flex flex-col items-start justify-center p-5"
+          classes=" flex flex-col items-start justify-center p-5"
         >
           <h1 className="text-2xl pb-8 font-bold text-gray-700">Registrar</h1>
           <Input
@@ -107,19 +107,19 @@ export default function Register() {
               href={"/login"}
               className="p-2 border-solid border-2 border-[#54b9cb] text-center rounded-lg duration-300 hover:bg-[#54b9cb] hover:text-white"
             >
-              Entrar
+              Logar
             </Link>
           </div>
         </Form>
       </section>
-      <section className="w-full h-4/5 rounded-l-xl overflow-hidden">
-        <figure className="w-full h-full ">
+      <section className="w-full rounded-l-xl overflow-hidden hidden sm:block">
+        <figure className="w-full">
           <Image
             src={bg.src}
             alt="bg"
             width={1000}
             height={1000}
-            className="h-full object-cover blur-sm"
+            className="h-[668px] object-cover blur-sm"
           />
         </figure>
       </section>

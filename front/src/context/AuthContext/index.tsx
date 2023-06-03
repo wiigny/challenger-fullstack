@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { TLoginData } from "@/app/login/validator";
 import { createContext } from "react";
 import { IAuthContextProps, IAuthProviderProps } from "./types";
+import { setCookie } from "nookies";
 
 export const AuthContext = createContext({} as IAuthContextProps);
 
@@ -16,7 +17,9 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
     try {
       const response = await api.post("/login", data);
 
-      localStorage.setItem("Token", response.data.token);
+      setCookie(null, "token_schedule", response.data.token, {
+        maxAge: 30 * 60 * 60,
+      });
 
       router.push("/");
     } catch (error) {
@@ -33,7 +36,9 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
         password: data.password,
       });
 
-      localStorage.setItem("Token", response.data.token);
+      setCookie(null, "token_schedule", response.data.token, {
+        maxAge: 30 * 60 * 60,
+      });
 
       router.push("/");
     } catch (error) {

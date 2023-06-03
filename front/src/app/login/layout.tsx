@@ -9,7 +9,9 @@ interface ILayoutLogin {
 export default function LayoutLogin({ children }: ILayoutLogin) {
   return (
     <AuthProvider>
-      <main>{children}</main>
+      <main className="h-full flex justify-center items-center">
+        {children}
+      </main>
     </AuthProvider>
   );
 }

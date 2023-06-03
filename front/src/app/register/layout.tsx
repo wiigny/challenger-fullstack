@@ -8,7 +8,9 @@ interface ILayoutRegister {
 export default function LayoutRegister({ children }: ILayoutRegister) {
   return (
     <AuthProvider>
-      <main>{children}</main>
+      <main className="h-full flex justify-center items-center">
+        {children}
+      </main>
     </AuthProvider>
   );
 }

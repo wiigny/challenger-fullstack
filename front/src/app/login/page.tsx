@@ -25,7 +25,7 @@ export default function Login() {
 
   return (
     <div className="w-4/5 m-auto flex items-center justify-center h-screen">
-      <section className="h-4/5 w-full rounded-l-xl overflow-hidden">
+      <section className="h-4/5 w-full sm:rounded-l-xl sm:rounded-r-none rounded-xl overflow-hidden">
         <Form
           submit={handleSubmit(submit)}
           classes="bg-gray-200 h-full flex flex-col items-start justify-center p-5"
@@ -58,14 +58,14 @@ export default function Login() {
             <Link
               href={"/register"}
               type="submit"
-              className="p-2 border-solid border-2 border-sky-600 text-center rounded-lg duration-300 hover:bg-sky-600 hover:text-white"
+              className="p-2 border-solid border-2 border-[#54b9cb] text-center rounded-lg duration-300 hover:bg-[#54b9cb] hover:text-white"
             >
               Registrar
             </Link>
           </div>
         </Form>
       </section>
-      <section className="w-full h-4/5 rounded-r-xl overflow-hidden">
+      <section className="w-full h-4/5 rounded-r-xl hidden sm:block overflow-hidden">
         <figure className="w-full h-full ">
           <Image
             src={bg.src}

@@ -14,6 +14,7 @@ import {
 import { TUserUpdate } from "@/components/Modals/ModalUserUpdate/validator";
 import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator";
 import { TAddContact } from "@/components/Modals/ModalContactAdd/validator";
+import { parseCookies } from "nookies";
 
 export const UserContext = createContext({} as IUserContextProps);
 
@@ -24,31 +25,13 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const [img, setImg] = useState<string>("");
 
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("Token")
-  );
+  const cookies = parseCookies();
 
-  const getUser = async (
-    id: string,
-    authToken: string | null = token
-  ): Promise<IResponseUser | undefined> => {
-    try {
-      const response: { data: IResponseUser } = await api.get(
-        `/clients/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+  const [token, setToken] = useState<string | null>(cookies.token_schedule);
 
-      setUser(response.data);
-
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  if (token) {
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
 
   useEffect(() => {
     (async () => {
@@ -65,17 +48,28 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     })();
   }, [token]);
 
+  const getUser = async (
+    id: string,
+    authToken: string | null = token
+  ): Promise<IResponseUser | undefined> => {
+    try {
+      const response: { data: IResponseUser } = await api.get(`/clients/${id}`);
+
+      setUser(response.data);
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const addContact = async (data: TAddContact) => {
     if (data.email === "") {
       data = { name: data.name, telephone: data.telephone };
     }
 
     try {
-      await api.post("/contacts", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await api.post("/contacts", data);
 
       getUser(user!.id);
     } catch (error) {
@@ -89,11 +83,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
 
     try {
-      await api.patch(`/contacts/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await api.patch(`/contacts/${id}`, data);
 
       getUser(user!.id);
     } catch (error) {
@@ -106,11 +96,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       const formData = new FormData();
       formData.append("avatar", file);
 
-      const response = await api.patch(`/update-avatar`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.patch(`/update-avatar`, formData);
 
       setImg(response.data.avatarUrl);
 
@@ -122,11 +108,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const removeContact = async (id: string) => {
     try {
-      await api.delete(`/contacts/${id}`, {
-        headers: {
-          Authorization: `bearer ${token}`,
-        },
-      });
+      await api.delete(`/contacts/${id}`);
 
       getUser(user!.id);
     } catch (error) {
@@ -135,11 +117,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   };
 
   const updateUser = async (data: TUserUpdate) => {
-    const response = await api.patch(`/clients/${user!.id}`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await api.patch(`/clients/${user!.id}`, data);
 
     setUser(response.data);
   };
@@ -154,7 +132,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         updateContact,
         setUser,
         updateUser,
-        setToken,
         getUser,
         updateImage,
       }}
