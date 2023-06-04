@@ -5,7 +5,7 @@ import { BiExit } from "react-icons/bi";
 import { FaUserEdit } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@chakra-ui/react";
-import { TUserUpdate } from "../Modals/ModalUserUpdate/validator";
+import { TUserUpdate } from "../Modals/ModalUserUpdate/components/validator";
 import { Button } from "../Button";
 import { ModalUserUpdate } from "../Modals/ModalUserUpdate";
 import { BsFillTelephoneFill } from "react-icons/bs";

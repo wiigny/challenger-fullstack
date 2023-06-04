@@ -1,6 +1,9 @@
 import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator";
 import { TAddContact } from "@/components/Modals/ModalContactAdd/validator";
-import { TUserUpdate } from "@/components/Modals/ModalUserUpdate/validator";
+import {
+  TUserUpdateInfos,
+  TUserUpdatePass,
+} from "@/components/Modals/ModalUserUpdate/components/validator";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface IUserProviderProps {
@@ -14,8 +17,9 @@ export interface IUserContextProps {
   removeContact: (id: string) => void;
   updateContact: (id: string, data: TUpdateContact) => void;
   setUser: Dispatch<SetStateAction<IResponseUser | undefined>>;
-  updateUser: (data: TUserUpdate) => void;
+  updateUser: (data: TUserUpdateInfos | TUserUpdatePass) => void;
   updateImage: (file: File) => void;
+  deleteUser: () => void;
 }
 
 export interface IResponseUser {

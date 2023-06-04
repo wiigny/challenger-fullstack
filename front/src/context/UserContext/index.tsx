@@ -11,7 +11,10 @@ import {
   IDecoded,
 } from "./types";
 
-import { TUserUpdate } from "@/components/Modals/ModalUserUpdate/validator";
+import {
+  TUserUpdateInfos,
+  TUserUpdatePass,
+} from "@/components/Modals/ModalUserUpdate/components/validator";
 import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator";
 import { TAddContact } from "@/components/Modals/ModalContactAdd/validator";
 import { parseCookies } from "nookies";
@@ -116,10 +119,16 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  const updateUser = async (data: TUserUpdate) => {
+  const updateUser = async (data: TUserUpdateInfos | TUserUpdatePass) => {
     const response = await api.patch(`/clients/${user!.id}`, data);
 
     setUser(response.data);
+  };
+
+  const deleteUser = async () => {
+    await api.delete(`/clients/${user!.id}`);
+    router.push("/login");
+    setUser(undefined);
   };
 
   return (
@@ -133,6 +142,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setUser,
         updateUser,
         updateImage,
+        deleteUser,
       }}
     >
       {children}
