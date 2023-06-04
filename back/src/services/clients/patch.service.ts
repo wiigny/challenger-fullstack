@@ -4,7 +4,8 @@ import { Client } from "../../entities";
 import { TCreateClient, TReturnClientCreated } from "../../interfaces";
 import { returnClientCreatedSchema } from "../../schemas";
 import { v2 as cloudinary } from "cloudinary";
-import { Response } from "express";
+import { Request, Response } from "express";
+import { AppError } from "../../errors/errors";
 
 export const updateClientService = async (
   data: TCreateClient,
@@ -28,8 +29,16 @@ export const updateClientService = async (
 
 export const uploadAvatarService = async (
   file: Express.Multer.File | undefined,
-  resp: Response
+  resp: Response,
+  req: Request
 ) => {
+  if (req.file === undefined) {
+    throw new AppError(
+      "Tipo de arquivo não suportado, certifique-se de passar arquivos .png, .jpeg, .jpg",
+      400
+    );
+  }
+
   cloudinary.config({
     cloud_name: process.env.CLOUD_NAME!,
     api_key: process.env.API_KEY!,

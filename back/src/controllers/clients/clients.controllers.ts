@@ -58,7 +58,7 @@ export const updateClientController = async (
 export const updateAvatarController = async (req: Request, resp: Response) => {
   const file = req.file;
 
-  const url = await uploadAvatarService(file, resp);
+  const url = await uploadAvatarService(file, resp, req);
 
   return resp.status(200).json(url);
 };
