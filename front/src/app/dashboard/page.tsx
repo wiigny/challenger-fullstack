@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 import { FigureAvatar } from "@/components/FigureAvatar";
-import Header from "@/components/Header";
-import ListContacts from "@/components/ListContacts";
-import ModalContactAdd from "@/components/Modals/ModalContactAdd";
+import { Header } from "@/components/Header";
+import { ListContacts } from "@/components/ListContacts";
+import { ModalContactAdd } from "@/components/Modals/ModalContactAdd";
 import { TUpdateContact } from "@/components/Modals/ModalContactUpdate/validator";
 import { UserProvider } from "@/context/UserContext";
 import { useContact } from "@/hooks/UserHook";

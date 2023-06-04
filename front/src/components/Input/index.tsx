@@ -1,6 +1,6 @@
 import { IInputProps } from "./types";
 
-export default function Input({
+export function Input({
   type,
   placeholder,
   label,

@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import Button from "../Button";
+import { Button } from "../Button";
 import "./style.scss";
 import { FileUploader } from "react-drag-drop-files";
 import { useState } from "react";

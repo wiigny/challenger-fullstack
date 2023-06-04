@@ -1,8 +1,8 @@
 "use client";
 
-import Form from "@/components/Form";
-import Input from "@/components/Input";
-import Button from "@/components/Button";
+import { Form } from "@/components/Form";
+import { Input } from "@/components/Input";
+import { Button } from "@/components/Button";
 import loginSchema, { TLoginData } from "./validator";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

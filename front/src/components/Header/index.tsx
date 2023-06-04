@@ -6,8 +6,8 @@ import { FaUserEdit } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@chakra-ui/react";
 import { TUserUpdate } from "../Modals/ModalUserUpdate/validator";
-import Button from "../Button";
-import ModalUserUpdate from "../Modals/ModalUserUpdate";
+import { Button } from "../Button";
+import { ModalUserUpdate } from "../Modals/ModalUserUpdate";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { destroyCookie } from "nookies";
 
@@ -15,7 +15,7 @@ interface IHeaderProps {
   updateUser: (data: TUserUpdate) => void;
 }
 
-export default function Header({ updateUser }: IHeaderProps) {
+export function Header({ updateUser }: IHeaderProps) {
   const router = useRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();

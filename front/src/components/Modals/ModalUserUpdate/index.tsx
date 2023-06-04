@@ -1,5 +1,6 @@
-import Form from "@/components/Form";
-import Input from "@/components/Input";
+"use client";
+import { Form } from "@/components/Form";
+import { Input } from "@/components/Input";
 import {
   Modal,
   ModalBody,
@@ -10,11 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 import userUpdateSchema, { TUserUpdate } from "./validator";
 import { useContact } from "@/hooks/UserHook";
-import { useState } from "react";
-import { FileUploader } from "react-drag-drop-files";
 
 interface IModalUserUpdateProps {
   updateUser?: (data: TUserUpdate) => void;
@@ -23,7 +22,7 @@ interface IModalUserUpdateProps {
   onClose: () => void;
 }
 
-export default function ModalUserUpdate({
+export function ModalUserUpdate({
   isOpen,
   onClose,
   onOpen,

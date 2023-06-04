@@ -1,5 +1,5 @@
-import Form from "@/components/Form";
-import Input from "@/components/Input";
+import { Form } from "@/components/Form";
+import { Input } from "@/components/Input";
 import {
   Modal,
   ModalBody,
@@ -11,7 +11,7 @@ import {
 import { SubmitHandler, useForm } from "react-hook-form";
 import addContactSchema, { TAddContact } from "./validator";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 
 interface IModalAddProps {
   addContact: (data: TAddContact) => void;
@@ -20,7 +20,7 @@ interface IModalAddProps {
   onClose: () => void;
 }
 
-export default function ModalContactAdd({
+export function ModalContactAdd({
   addContact,
   isOpen,
   onOpen,

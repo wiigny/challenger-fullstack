@@ -2,8 +2,8 @@ import { IUserContacts } from "@/context/UserContext/types";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useDisclosure } from "@chakra-ui/react";
-import Button from "../Button";
-import ModalContactUpdate from "../Modals/ModalContactUpdate";
+import { Button } from "../Button";
+import { ModalContactUpdate } from "../Modals/ModalContactUpdate";
 
 interface ListContacts {
   id: string;
@@ -12,12 +12,7 @@ interface ListContacts {
   click: (id: string) => void;
 }
 
-export default function ListContacts({
-  id,
-  contacts,
-  classes,
-  click,
-}: ListContacts) {
+export function ListContacts({ id, contacts, classes, click }: ListContacts) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

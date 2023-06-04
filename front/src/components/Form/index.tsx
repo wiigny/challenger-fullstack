@@ -6,7 +6,7 @@ interface IFormProps {
   classes?: string;
 }
 
-export default function Form({ children, submit, classes }: IFormProps) {
+export function Form({ children, submit, classes }: IFormProps) {
   return (
     <form onSubmit={submit} className={classes}>
       {children}

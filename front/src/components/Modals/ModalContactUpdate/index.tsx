@@ -1,18 +1,17 @@
-import Form from "@/components/Form";
-import Input from "@/components/Input";
+import { Form } from "@/components/Form";
+import { Input } from "@/components/Input";
 import {
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import updateContactSchema, { TUpdateContact } from "./validator";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 import { IUserContacts } from "@/context/UserContext/types";
 
 interface IModalUpdateProps {
@@ -24,7 +23,7 @@ interface IModalUpdateProps {
   onClose: () => void;
 }
 
-export default function ModalContactUpdate({
+export function ModalContactUpdate({
   uuid,
   update,
   info,
