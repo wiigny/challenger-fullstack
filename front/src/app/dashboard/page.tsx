@@ -12,14 +12,6 @@ import { useDisclosure } from "@chakra-ui/react";
 import { AiOutlineUserAdd } from "react-icons/ai";
 
 export default function Home() {
-  return (
-    <UserProvider>
-      <LoadingHome />
-    </UserProvider>
-  );
-}
-
-export function LoadingHome() {
   const { user, addContact, updateContact, removeContact, updateUser } =
     useContact();
 
@@ -34,7 +26,7 @@ export function LoadingHome() {
   };
 
   return (
-    <>
+    <UserProvider>
       <Header updateUser={updateUser} />
       <main className="bg-gray-800 py-24">
         <div className="w-4/5 m-auto flex flex-col gap-8 items-center">
@@ -56,7 +48,12 @@ export function LoadingHome() {
           <section className="bg-gray-200 rounded-xl w-full">
             <div className="flex justify-between pt-5 px-5">
               <h2 className="text-xl font-bold">Contatos</h2>
-              <Button type="button" click={onOpen}>
+              <Button
+                type="button"
+                classes="flex gap-2 hover:font-bold duration-300"
+                click={onOpen}
+              >
+                <p>Adicionar</p>
                 {<AiOutlineUserAdd size={24} />}
               </Button>
             </div>
@@ -92,6 +89,6 @@ export function LoadingHome() {
           addContact={addContact}
         />
       </main>
-    </>
+    </UserProvider>
   );
 }

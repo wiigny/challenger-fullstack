@@ -28,10 +28,18 @@ export default function ListContacts({
         {contacts.email && <p>Email: {contacts.email} </p>}
       </div>
       <div className="flex gap-4 justify-center items-center">
-        <Button type="button" click={onOpen}>
+        <Button
+          type="button"
+          classes="relative hover:before:content-['editar'] hover:before:absolute hover:before:top-6 hover:before:right-0 hover:before:text-yellow-500"
+          click={onOpen}
+        >
           {<AiOutlineEdit size={24} />}
         </Button>
-        <Button type="button" click={() => click(id)}>
+        <Button
+          type="button"
+          classes="relative hover:before:content-['excluir'] hover:before:absolute hover:before:top-6 hover:before:right-0 hover:before:text-red-700"
+          click={() => click(id)}
+        >
           {<RiCloseCircleLine size={24} />}
         </Button>
       </div>

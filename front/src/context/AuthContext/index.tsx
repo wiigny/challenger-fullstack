@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
         maxAge: 30 * 60 * 60,
       });
 
-      router.push("/");
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
         maxAge: 30 * 60 * 60,
       });
 
-      router.push("/");
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
     }

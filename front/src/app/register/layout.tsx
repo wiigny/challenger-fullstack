@@ -1,3 +1,4 @@
+import "@/styles/globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { ReactNode } from "react";
 
@@ -7,10 +8,10 @@ interface ILayoutRegister {
 
 export default function LayoutRegister({ children }: ILayoutRegister) {
   return (
-    <AuthProvider>
-      <main className="h-full flex justify-center items-center">
-        {children}
-      </main>
-    </AuthProvider>
+    <div
+      className={`h-screen overflow-auto bg-gray-800 flex flex-col justify-center items-center`}
+    >
+      <AuthProvider>{children}</AuthProvider>
+    </div>
   );
 }

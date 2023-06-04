@@ -24,7 +24,7 @@ export default function Login() {
   };
 
   return (
-    <div className="w-4/5 m-auto flex items-center justify-center h-screen">
+    <main className="w-4/5 m-auto flex items-center justify-center h-screen">
       <section className="h-4/5 w-full sm:rounded-l-xl sm:rounded-r-none rounded-xl overflow-hidden">
         <Form
           submit={handleSubmit(submit)}
@@ -69,13 +69,13 @@ export default function Login() {
         <figure className="w-full h-full ">
           <Image
             src={bg.src}
-            alt="bg"
+            alt="background"
             width={1000}
             height={1000}
             className="h-full object-cover blur-sm"
           />
         </figure>
       </section>
-    </div>
+    </main>
   );
 }

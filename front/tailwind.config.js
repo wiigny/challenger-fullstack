@@ -6,7 +6,21 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        redirect: {
+          "0%": {
+            color: "#FFFFFF",
+          },
+          "50%": {
+            color: "#1f2937",
+          },
+          "100%": {
+            color: "#FFFFFF",
+          },
+        },
+      },
+    },
   },
   plugins: [],
 };

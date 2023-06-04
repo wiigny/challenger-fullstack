@@ -27,7 +27,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const cookies = parseCookies();
 
-  const [token, setToken] = useState<string | null>(cookies.token_schedule);
+  const [token, setToken] = useState<string | undefined>(
+    cookies.token_schedule
+  );
 
   if (token) {
     api.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -35,9 +37,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   useEffect(() => {
     (async () => {
-      const locationPath = window.location.pathname;
-
-      if (locationPath === "/" && token === null) {
+      if (token === undefined) {
         return router.push("/login");
       }
       if (token) {
@@ -50,7 +50,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const getUser = async (
     id: string,
-    authToken: string | null = token
+    authToken: string | undefined = token
   ): Promise<IResponseUser | undefined> => {
     try {
       const response: { data: IResponseUser } = await api.get(`/clients/${id}`);
@@ -132,7 +132,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         updateContact,
         setUser,
         updateUser,
-        getUser,
         updateImage,
       }}
     >

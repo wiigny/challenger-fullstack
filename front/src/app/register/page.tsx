@@ -28,12 +28,9 @@ export default function Register() {
   };
 
   return (
-    <div className="w-4/5 m-auto h-max flex items-center justify-center flex-row-reverse">
-      <section className="w-full h-[668px] sm:rounded-r-xl sm:rounded-l-none rounded-xl bg-gray-200">
-        <Form
-          submit={handleSubmit(submit)}
-          classes=" flex flex-col items-start justify-center p-5"
-        >
+    <main className="w-4/5 h-4/5 m-auto flex flex-row-reverse items-center justify-center">
+      <section className="w-full h-full sm:rounded-r-xl flex flex-col justify-center items-center sm:rounded-l-none p-5 rounded-xl bg-gray-200 overflow-auto">
+        <Form submit={handleSubmit(submit)} classes="w-full h-max">
           <h1 className="text-2xl pb-8 font-bold text-gray-700">Registrar</h1>
           <Input
             type="text"
@@ -112,17 +109,17 @@ export default function Register() {
           </div>
         </Form>
       </section>
-      <section className="w-full rounded-l-xl overflow-hidden hidden sm:block">
-        <figure className="w-full">
+      <section className="w-full h-full rounded-l-xl overflow-hidden hidden sm:block">
+        <figure className="w-full h-full">
           <Image
             src={bg.src}
-            alt="bg"
+            alt="background"
             width={1000}
             height={1000}
-            className="h-[668px] object-cover blur-sm"
+            className="h-full object-cover blur-sm"
           />
         </figure>
       </section>
-    </div>
+    </main>
   );
 }

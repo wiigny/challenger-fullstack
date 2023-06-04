@@ -43,6 +43,7 @@ export const FigureAvatar = ({ user }: { user?: IResponseUser }) => {
             alt="avatar"
             src={img ? img : user.avatar}
             className="h-full object-cover"
+            priority={true}
           />
         ) : (
           <p className="bg-[#54b9cb] h-full flex items-center justify-center text-white text-2xl cursor-pointer hover:scale-105 duration-300 relative">
