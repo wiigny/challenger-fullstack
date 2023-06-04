@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
       const response = await api.post("/login", data);
 
       setCookie(null, "token_schedule", response.data.token, {
-        maxAge: 30 * 60 * 60,
+        maxAge: 60 * 60 * 24,
       });
 
       router.push("/dashboard");
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
       });
 
       setCookie(null, "token_schedule", response.data.token, {
-        maxAge: 30 * 60 * 60,
+        maxAge: 60 * 60 * 24,
       });
 
       router.push("/dashboard");
